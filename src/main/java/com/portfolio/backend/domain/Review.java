@@ -8,17 +8,24 @@ import jakarta.persistence.*;
 public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long reviewid;
+	private Long igdbId;
 	private String comment;
 	private int rating;
 	private String reviewerName;
 	private LocalDateTime date;
 	
-	public Long getId() {
-		return id;
+	public Long getReviewid() {
+		return reviewid;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setReviewid(Long reviewid) {
+		this.reviewid = reviewid;
+	}
+	public Long getIgdbId() {
+		return igdbId;
+	}
+	public void setIgdbId(Long igdbId) {
+		this.igdbId = igdbId;
 	}
 	public String getComment() {
 		return comment;
@@ -44,32 +51,27 @@ public class Review {
 	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
-	
-	public Review(Long id, String comment, int rating, String reviewerName, LocalDateTime date) {
+	public Review() {
 		super();
-		this.id = id;
+	}
+	
+	public Review(Long reviewid, Long igdbId, String comment, int rating, String reviewerName, LocalDateTime date) {
+		super();
+		this.reviewid = reviewid;
+		this.igdbId = igdbId;
 		this.comment = comment;
 		this.rating = rating;
 		this.reviewerName = reviewerName;
 		this.date = date;
 	}
-	
-	
-	public Review(String comment, int rating, String reviewerName) {
-		super();
-		this.comment = comment;
-		this.rating = rating;
-		this.reviewerName = reviewerName;
-	}
-	
-	public Review() {
-		super();
-	}
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", comment=" + comment + ", rating=" + rating + ", reviewerName=" + reviewerName
-				+ ", date=" + date + "]";
+		return "Review [reviewid=" + reviewid + ", igdbId=" + igdbId + ", comment=" + comment + ", rating=" + rating
+				+ ", reviewerName=" + reviewerName + ", date=" + date + "]";
 	}
+	
+	
+	
 	
 	
 	

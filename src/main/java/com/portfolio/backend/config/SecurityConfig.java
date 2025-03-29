@@ -1,4 +1,23 @@
 package com.portfolio.backend.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class SecurityConfig implements WebMvcConfigurer {
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/api/**")  // allow CORS for all /api/** endpoints
+                .allowedOrigins("http://localhost:3000")  // allow requests from your frontend domain/port
+                .allowedMethods("GET", "POST", "PUT", "DELETE")  // specify allowed HTTP methods
+                .allowCredentials(true);  // allow credentials if needed
+    }
+}
+
+
+
 /*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

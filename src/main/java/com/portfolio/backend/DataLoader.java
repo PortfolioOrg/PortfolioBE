@@ -21,7 +21,7 @@ public class DataLoader implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		if (reviewRepository.count() == 0) {
+		/*if (reviewRepository.count() == 0) {
 		Review review = new Review();
 		Review review1 = new Review();
 		Review review2 = new Review();
@@ -42,8 +42,8 @@ public class DataLoader implements CommandLineRunner {
 		reviewRepository.save(review1);
 		reviewRepository.save(review2);
 		
-		logger.info("Testi tiedot lisättiin tietokantaan yhden kerran!");
-		}
+		logger.info("Testi tiedot lisättiin tietokantaan yhden kerran!");*/
+		//}
 	}
 
 }

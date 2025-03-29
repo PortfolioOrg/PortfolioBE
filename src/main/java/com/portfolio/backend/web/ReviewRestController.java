@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.ResponseEntity;
 
 import com.portfolio.backend.domain.Review;
 import com.portfolio.backend.domain.ReviewRepository;
@@ -25,18 +26,27 @@ public class ReviewRestController {
 		return reviewRepository.findAll();
 	}
 	
+	
+	
 	@GetMapping("/rating/{rating}")
 	public List<Review> getReviewsByRating(@PathVariable int rating) {
 		return reviewRepository.findByRating(rating);
 	}
 	
+	@PostMapping("/add")
+	public ResponseEntity<Review> addReview(@RequestBody Review review) {
+		Review savedreview = reviewRepository.save(review);
+		return ResponseEntity.ok(savedreview);
+		 
+	}
 	
-	public Review createReview(Review review) {
-		return reviewRepository.save(review);
-		}
+	@GetMapping("/game/{igdbId}")
+	public List<Review> getReviewsByGameId(@PathVariable Long igdbId) {
+	    return reviewRepository.findByIgdbId(igdbId);
+	}
 	
-	public Review updateReview(Long id, Review updatedReview) {
-		Optional<Review> existingReview = reviewRepository.findById(id);
+	public Review updateReview(Long reviewid, Review updatedReview) {
+		Optional<Review> existingReview = reviewRepository.findById(reviewid);
 		
 		if (existingReview.isPresent()) {
 			Review review = existingReview.get();
@@ -47,13 +57,13 @@ public class ReviewRestController {
 			return reviewRepository.save(review);
 		}
 		else {
-			throw new RuntimeException("Arvostelua ei lötytynyt ID:llä: " + id);
+			throw new RuntimeException("Arvostelua ei lötytynyt ID:llä: " + reviewid);
 		}
 		
 	}
 	
-	public void deleteReview(Long id) {
-		reviewRepository.deleteById(id);
+	public void deleteReview(Long reviewid) {
+		reviewRepository.deleteById(reviewid);
 	}
 	
 }
